@@ -1,7 +1,6 @@
 import urllib, re, os
 
 # CONSTANTS
-
 extract_rows = re.compile(r'<tr>.+?</tr>', re.DOTALL)
 get_title    = re.compile(r'title.+?</a')
 between      = re.compile(r'>.+?<')
@@ -10,7 +9,7 @@ get_song     = re.compile(r'[A-Z0-9][A-Za-z\-\' 0-9\.]+')
 url          = 'https://en.wikipedia.org/wiki/List_of_songs_recorded_by_Iron_Maiden'
 
 def get_html():
-# return the html from the URL
+# Return the html from the URL.
 
     html_text = urllib.urlopen(url)
     return html_text.read()
@@ -44,12 +43,12 @@ if __name__ == "__main__":
 
     name = raw_input("Insert the musician name (Paul Di'Anno, Dave Murray, Bruce Dickinson, Steve Harris, Adrian Smith, Janick Gers, Blaze Bayley, and Nicko McBrain): ")
     select_name  = re.compile(name)
-    save = input("Do you want to save the music list in a file? 0 for 'no' and 1 for 'yes': ")
+    save = input("Do you want to save the song list in a file? 0 for 'no' and 1 for 'yes': ")
 
     songs = extract_songs(html_text)
 
     if not save:
-        print "\n" + name + " has a total of " + str(len(songs)) + " musics.\n"
+        print "\n" + name + " has a total of " + str(len(songs)) + " songs.\n"
         
         for song in songs:
             print "- " + song
